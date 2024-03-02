@@ -1,0 +1,251 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sycols</title>
+</head>
+<body>
+        <header class="main-header clearfix">
+            <div class="main-header__top">
+                <div class="container">
+                    <div class="main-header__top-inner clearfix">
+                        <div class="main-header__top-left">
+                            <div class="main-header__top-logo">
+                                <a href="{% url 'index' %}"><img src="{% static 'images/resources/logo-1.png' %}" alt=""></a>
+                            </div>
+                        </div>
+
+                        <div class="main-header__top-right">
+                            <ul class="list-unstyled main-header__top-contact">
+                                <li>
+                                    <div class="icon">
+                                        <span class="icon-email-1"></span>
+                                    </div>
+                                    <div class="content">
+                                        <p>Quick Email Now!</p>
+                                        <h5><a href="mailto:helpus24@gmail.com">helpus24@gmail.com</a></h5>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon">
+                                        <span class="icon-location"></span>
+                                    </div>
+                                    <div class="content">
+                                        <p>Company Location</p>
+                                        <h5>Melbourne, Australia</h5>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="main-header__top-right-btn">
+                                <a href="{% url 'contact' %}" class="thm-btn">Request Book</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="main-menu clearfix">
+                <div class="main-menu__wrapper clearfix">
+                    <div class="container">
+                        <div class="main-menu__wrapper-inner clearfix">
+
+                            <div class="main-menu__left">
+                                <div class="main-menu__main-menu-box">
+                                    <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
+                                    <ul class="main-menu__list">
+                                        <li >
+                                            <a href="{% url 'index' %}">Home </a>
+
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="services.html">Services</a>
+                                            <ul>
+                                                <li><a href="services.html">Services</a></li>
+                                                <li><a href="services-carousel.html">Services Carousel</a></li>
+                                                <li><a href="individual-counselling.html">Individual Counselling</a>
+                                                </li>
+                                                <li><a href="couple-counselling.html">Couple Counselling</a></li>
+                                                <li><a href="depression-treatment.html">Depression Treatment</a></li>
+                                                <li><a href="family-psychology.html">Family Psychology</a></li>
+                                                <li><a href="group-theraphy.html">Group Theraphy</a></li>
+                                                <li><a href="children-counselling.html">Children Counselling</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'about' %}">About</a>
+                                        </li>
+
+                                        <li class="dropdown">
+                                            <a href="#">Page</a>
+                                            <ul>
+                                                <li><a href="team.html">Team</a></li>
+                                                <li><a href="team-carousel.html">Team Carousel</a></li>
+                                                <li><a href="faq.html">FAQs</a></li>
+                                                <li><a href="error.html">404 Error</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="blog.html">Blog</a>
+
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'contact' %}">Contact</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="main-menu__right">
+                                <ul class="main-menu__right-social-link list-unstyled">
+                                    <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
+                                    <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+                                    <li><a href="#"><span class="fab fa-pinterest-p"></span></a></li>
+                                </ul>
+                                <div class="main-menu__search-box">
+                                    <a href="#" class="main-menu__search search-toggler icon-search"></a>
+                                </div>
+
+                                <div class="main-menu__right-contact-box">
+                                    <div class="icon-box">
+                                        <span class="icon-phone"></span>
+                                    </div>
+                                    <div class="text-box">
+                                        <p>Phone Number</p>
+                                        <h5><a href="tel:8800115244">(88) 00-11-52 -44</a></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        {% block content%}
+        {% endblock %}
+        <!--Start Site Footer-->
+        <footer class="site-footer">
+            <div class="site-footer-bg" style="background-image: url({% static 'images/backgrounds/footer-v1-bg.jpg' %});">
+            </div>
+            <div class="site-footer__top">
+                <div class="container">
+                    <div class="row">
+
+                        <!--Start Footer Widget Column-->
+                        <div class="col-xl-3 col-lg-6 col-md-6 wow animated fadeInUp" data-wow-delay="0.1s">
+                            <div class="footer-widget__column footer-widget__about">
+                                <div class="footer-widget__logo">
+                                    <a href="{% url 'index' %}"><img src="{% static 'images/resources/footer-logo.png' %}" alt=""></a>
+                                </div>
+                                <div class="footer-widget__about-text-box">
+                                    <p class="footer-widget__about-text">Counselling psychologists work with clients to
+                                        help them improve their mental health and emotional
+                                        wellbeing we are here</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End Footer Widget Column-->
+
+                        <!--Start Footer Widget Column-->
+                        <div class="col-xl-3 col-lg-6 col-md-6 wow animated fadeInUp" data-wow-delay="0.3s">
+                            <div class="footer-widget__column footer-widget__contact clearfix">
+                                <div class="footer-widget__title-box">
+                                    <h3 class="footer-widget__title">Contact</h3>
+                                </div>
+                                <ul class="footer-widget__contact-list list-unstyled clearfix">
+                                    <li>
+                                        <div class="icon">
+                                            <span class="icon-email-1"></span>
+                                        </div>
+                                        <div class="text">
+                                            <p><a href="mailto:helpus24@gmail.com">helpus24@gmail.com</a></p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <span class="icon-phone"></span>
+                                        </div>
+                                        <div class="text">
+                                            <p><a href="tel:0881122334455">+088 11 22 33 44 55</a></p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <span class="icon-location"></span>
+                                        </div>
+                                        <div class="text">
+                                            <p>Aski RA4, Suite 14545 <br> Melbourne Australia</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <ul class="footer-widget__contact-social-link">
+                                    <li>
+                                        <a href="#"><span class="fab fa-facebook-f"></span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span class="fab fa-twitter"></span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span class="fab fa-pinterest-p"></span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--End Footer Widget Column-->
+
+                        <!--Start Footer Widget Column-->
+                        <div class="col-xl-2 col-lg-6 col-md-6 wow animated fadeInUp" data-wow-delay="0.5s">
+                            <div class="footer-widget__column footer-widget__service clearfix">
+                                <div class="footer-widget__title-box">
+                                    <h3 class="footer-widget__title">Services</h3>
+                                </div>
+                                <ul class="footer-widget__service-list list-unstyled clearfix">
+                                    <li><a href="#">Personal Meeting</a></li>
+                                    <li><a href="#">Anxiety Disorder</a></li>
+                                    <li><a href="#">Couple Problems</a></li>
+                                    <li><a href="#">Depression therapy</a></li>
+                                    <li><a href="#">Individual therapy</a></li>
+                                    <li><a href="#">Family case</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--End Footer Widget Column-->
+
+                        <!--Start Footer Widget Column-->
+                        <div class="col-xl-4 col-lg-6 col-md-6 wow animated fadeInUp" data-wow-delay="0.7s">
+                            <div class="footer-widget__column footer-widget__newsletter clearfix">
+                                <div class="footer-widget__title-box">
+                                    <h3 class="footer-widget__title">Newsletter</h3>
+                                </div>
+                                <p class="footer-widget__newsletter-text">Subscribe us & get news, articles to your
+                                    inbox.</p>
+                                <form class="footer-widget__subscribe-box">
+                                    <div class="footer-widget__subscribe-input-box">
+                                        <input type="email" placeholder="Email address" name="email">
+                                        <button type="submit" class="footer-widget__subscribe-btn"><i class="icon-send"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!--End Footer Widget Column-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="site-footer__bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="site-footer__bottom-inner">
+                                <p class="site-footer__bottom-text">© 2022 <a href="{% url 'index' %}">Sycols.com</a>
+                                    All Rights Reserved</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--End Site Footer-->
+
+</body>
+</html>
