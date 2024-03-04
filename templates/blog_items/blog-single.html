@@ -118,35 +118,29 @@
                                                         <span class="icon-user"></span>
                                                     </div>
                                                     <div class="text">
-                                                        <a href="#">{{post_obj.author.get_full_name}}</a>
+                                                        <a href="{% url 'blog_show:author_pubs' author_username=post_obj.author.username %}">{{post_obj.author.get_full_name}}</a>
                                                     </div>
 
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="inner">
-                                                    <div class="icon">
-                                                        <span class="icon-user"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <a href="#"> {{item.counted_views}} View</a>
-                                                    </div>
 
-                                                </div>
-                                            </li>
                                             <li>
                                                 <div class="inner">
                                                     <div class="icon">
                                                         <span class=" icon-clock-1"></span>
                                                     </div>
                                                     <div class="text">
-                                                        <a href="#">{{item.published_date|date:"d M Y"}}</a>
+                                                        <a>{{post_obj.published_date|date:"d M Y"}}</a>
                                                     </div>
 
                                                 </div>
                                             </li>
 
-
+                                            <li>
+                                                <div class="btn-box">
+                                                    <a href="#"><span class="icon-share"></span></a>
+                                                </div>
+                                            </li>
                                         </ul>
                                     </div>
                                     <h2>What To Do with Your Seasonal <br> Depression?</h2>
