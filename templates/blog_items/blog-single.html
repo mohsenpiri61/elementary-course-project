@@ -345,14 +345,9 @@
                     <!--Start Sidebar-->
                     <div class="col-xl-4 col-lg-5">
                         <div class="sidebar">
-                            <div class="sidebar__single sidebar__search wow animated fadeInUp" data-wow-delay="0.1s">
-                                <form action="#" class="sidebar__search-form">
-                                    <input type="search" placeholder="Search">
-                                    <button type="submit"><i class="icon-search"></i></button>
-                                </form>
-                            </div>
+                            {% include 'blog_items/blog-search.html' %}
 
-                            <div class="sidebar__single sidebar__category wow animated fadeInUp" data-wow-delay="0.2s">
+                            <div class="sidebar__single sidebar__category wow animated fadeInUp" >
                                 <div class="title">
                                     <h2>Categories</h2>
                                     <div class="line"></div>
@@ -361,7 +356,7 @@
                                 </ul>
                             </div>
 
-                            <div class="sidebar__single sidebar__post wow animated fadeInUp" data-wow-delay="0.3s">
+                            <div class="sidebar__single sidebar__post wow animated fadeInUp" >
                                 <div class="title">
                                     <h2>Popular Post </h2>
                                     {% most_visited_posts 3 %}
