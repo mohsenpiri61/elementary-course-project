@@ -21,7 +21,7 @@ def list_view(request, **kwargs):
     if kwargs.get('tag_name') != None:
         filter_post = filter_post.filter(tags__name__in=[kwargs['tag_name']])
 
-    page_init = Paginator(filter_post, 10)
+    page_init = Paginator(filter_post, 3)
     page_number = request.GET.get('page')
 
     try:
