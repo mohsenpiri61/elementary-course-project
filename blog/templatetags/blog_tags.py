@@ -5,12 +5,6 @@ from django.utils import timezone
 register = template.Library()
 
 
-@register.simple_tag()
-def cal_post():
-    posts = Post.objects.filter(status=1).count()
-    return posts
-
-
 @register.simple_tag(name='posts')
 def show_post():
     posts_obj = Post.objects.filter(status=1)
@@ -33,13 +27,13 @@ def show_latest_posts():
     return {'post_obj': post_obj}
 
 
-@register.inclusion_tag('blog_items/blog-latest-post.html')
+@register.inclusion_tag('blog_items/popular-posts.html')
 def most_visited_posts(arg=3):
     post_obj = Post.objects.filter(published_date__lt=timezone.now(), status=1).order_by('-counted_views')[:arg]
     return {'post_obj': post_obj}
 
 
-@register.inclusion_tag('blog_items/blog-post-categories.html')
+@register.inclusion_tag('blog_items/blog-category.html')
 def cat_of_posts():
     post_obj = Post.objects.filter(published_date__lt=timezone.now(), status=1)
     category_obj = Category.objects.all()

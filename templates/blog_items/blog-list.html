@@ -102,7 +102,7 @@
                                 <div class="blog-one__single">
                                     <div class="blog-one__single-img">
                                         <div class="blog-one__single-img-inner">
-                                            <img src="{% static 'images/blog/blog-list-img1.jpg' %}" alt="">
+                                            <img src="{{item.image.url}}" alt="">
                                         </div>
                                         <div class="blog-one__single-img-text">
                                             {% for cat in item.category_list.all %}
@@ -112,8 +112,8 @@
                                     </div>
 
                                     <div class="blog-one__single-content">
-                                        <h2><a href="blog-single.html">{{item.title}}</a></h2>
-                                        <p>{{item.content}} </p>
+                                        <h2><a href="{% url 'blog_show:blog_single' pid=item.id %}">{{item.title}}</a></h2>
+                                        <p>{{item.content|truncatewords:25}} </p>
                                         <div class="blog-one__single-content-meta-box">
                                             <ul class="list-unstyled">
 
@@ -173,7 +173,7 @@
                                                 <ul class="list-unstyled">
                                                      <li>
                                                     <div class="btn-box">
-                                                        <a href="blog-single.html">Read More <span class="icon-right-arrow-2"></span></a>
+                                                        <a href="{% url 'blog_show:blog_single' pid=item.id %}">Read More <span class="icon-right-arrow-2"></span></a>
                                                     </div>
                                                 </li>
                                                 </ul>
@@ -187,6 +187,7 @@
 
 
                                 <ul class="styled-pagination list-unstyled clearfix">
+
                                     <li><a href="#" class="active">1</a></li>
                                     <li><a href="#">2</a></li>
                                     <li><a href="#">3</a></li>
@@ -201,84 +202,23 @@
                     <!--Start Sidebar-->
                     <div class="col-xl-4 col-lg-5">
                         <div class="sidebar">
-                            <div class="sidebar__single sidebar__search wow animated fadeInUp" data-wow-delay="0.1s">
-                                <form action="#" class="sidebar__search-form">
-                                    <input type="search" placeholder="Search">
-                                    <button type="submit"><i class="icon-search"></i></button>
-                                </form>
-                            </div>
+                                {% include 'blog_items/blog-search.html' %}
 
                             <div class="sidebar__single sidebar__category wow animated fadeInUp" data-wow-delay="0.2s">
                                 <div class="title">
                                     <h2>Categories</h2>
                                     <div class="line"></div>
                                 </div>
+                                {% cat_of_posts %}
 
-                                <ul class="sidebar__category-list list-unstyled">
-
-                                    <li class="active"><a href="blog-single.html">Counselling <span>10</span> <i class="icon-right-arrow-1"></i></a></li>
-
-                                    <li><a href="blog-single.html">Corporate <span>02</span> <i class="icon-right-arrow-1"></i></a></li>
-
-                                    <li><a href="blog-single.html">Daily Health <span>09</span> <i class="icon-right-arrow-1"></i></a></li>
-
-                                    <li><a href="blog-single.html">Mental Depression <span>03</span> <i class="icon-right-arrow-1"></i></a></li>
-
-                                    <li><a href="blog-single.html">Psyche Experts <span>02</span> <i class="icon-right-arrow-1"></i></a></li>
-                                    <li><a href="blog-single.html">Work Injury <span>07</span> <i class="icon-right-arrow-1"></i></a></li>
-
-                                </ul>
                             </div>
 
                             <div class="sidebar__single sidebar__post wow animated fadeInUp" data-wow-delay="0.3s">
                                 <div class="title">
-                                    <h2>Latest Post </h2>
-                                    <div class="line"></div>
+                                    <h2>Popular Posts </h2>
+                                        {% most_visited_posts 4 %}
                                 </div>
 
-                                <ul class="sidebar__post-list list-unstyled">
-                                    <li>
-                                        <div class="sidebar__post-image">
-                                            <img src="{% static 'images/blog/lp-1-1.jpg' %}" alt="">
-                                        </div>
-                                        <div class="sidebar__post-content">
-                                            <span class="sidebar__post-content-meta"><i class="icon-clock"></i>
-                                                April 25, 2022</span>
-                                            <h3>
-                                                <a href="blog-single.html">How to Stay on Budget <br> During Kitchen
-                                                </a>
-                                            </h3>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="sidebar__post-image">
-                                            <img src="{% static 'images/blog/lp-1-2.jpg' %}" alt="">
-                                        </div>
-                                        <div class="sidebar__post-content">
-                                            <span class="sidebar__post-content-meta"><i class="icon-clock"></i>
-                                                April 25, 2022</span>
-                                            <h3>
-                                                <a href="blog-single.html">Nutrition and Mental <br> Health
-                                                </a>
-                                            </h3>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="sidebar__post-image">
-                                            <img src="{% static 'images/blog/lp-1-3.jpg' %}" alt="">
-                                        </div>
-                                        <div class="sidebar__post-content">
-                                            <span class="sidebar__post-content-meta"><i class="icon-clock"></i>
-                                                April 25, 2022</span>
-                                            <h3>
-                                                <a href="blog-single.html">Pros and Cons of <br> Online Counselling
-                                                </a>
-                                            </h3>
-                                        </div>
-                                    </li>
-                                </ul>
                             </div>
 
                             <div class="sidebar__single sidebar__tags wow animated fadeInUp" data-wow-delay="0.4s">

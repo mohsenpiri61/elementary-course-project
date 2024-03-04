@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'webapp',
     'blog',
     'django_summernote',
+    'django.contrib.humanize',
 
 ]
 
