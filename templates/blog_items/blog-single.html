@@ -105,7 +105,9 @@
                                         <img src="{{post_obj.image.url}}" alt="">
                                     </div>
                                     <div class="blog-one__single-img-text">
-                                        <span>Counselor</span>
+                                        {% for cat in post_obj.category_list.all %}
+                                            <span><a href="{% url 'blog_show:category_blog' cat_name=cat.name %}">{{cat.name}}</a> {% if not forloop.last %} , {% endif %}</span>
+                                            {% endfor %}
                                     </div>
                                 </div>
 

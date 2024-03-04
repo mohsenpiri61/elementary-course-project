@@ -9,7 +9,6 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 
-
 def list_view(request, **kwargs):
     filter_post = Post.objects.filter(published_date__lt=timezone.now(), status=1)
     if kwargs.get('cat_name') != None:
@@ -75,3 +74,11 @@ def single_view(request, pid):
         return HttpResponseRedirect(reverse('user_auth:login_page'))
 
 
+def search_view(request):
+    filter_post = Post.objects.filter(published_date__lt=timezone.now(), status=1)
+    if request.method == 'GET':
+        req = request.GET.get('s')
+        if req:
+            filter_post = filter_post.filter(content__contains=req)
+    context = {'filter_post': filter_post}
+    return render(request, 'blog_items/blog-home.html', context)
