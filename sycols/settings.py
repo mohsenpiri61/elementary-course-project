@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'blog',
     'django_summernote',
     'django.contrib.humanize',
+    'taggit',
 
 ]
 

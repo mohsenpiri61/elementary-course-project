@@ -184,8 +184,6 @@
                                 {% endfor %}
                                 <!--End Blog One Single-->
 
-
-
                                 <ul class="styled-pagination list-unstyled clearfix">
 
                                     <li><a href="#" class="active">1</a></li>
@@ -220,34 +218,7 @@
                                 </div>
 
                             </div>
-
-                            <div class="sidebar__single sidebar__tags wow animated fadeInUp" data-wow-delay="0.4s">
-                                <div class="title">
-                                    <h2>Tags</h2>
-                                    <div class="line"></div>
-                                </div>
-                                <div class="sidebar__tags-list">
-                                    <a href="#">blog</a>
-                                    <a href="#">Counselling</a>
-                                    <a href="#">therapy</a>
-                                    <a href="#">family</a>
-                                    <a href="#">Psychotherapy</a>
-                                    <a href="#">therapy</a>
-                                    <a href="#">case</a>
-                                    <a href="#">Counselling</a>
-                                </div>
-                            </div>
-
-                            <div class="sidebar__single sidebar__contact wow animated fadeInUp" data-wow-delay="0.5s">
-                                <div class="sidebar__contact-box" style="background-image: url({% static 'images/resources/services-single-page-bg-img1.jpg' %});">
-                                    <div class="icon-box">
-                                        <span class="icon-brain"></span>
-                                    </div>
-                                    <h2>Book your <br> appointment now </h2>
-                                    <p>feel free to call </p>
-                                    <h5><a href="tel:1122115751">(11) 22 11-5751</a></h5>
-                                </div>
-                            </div>
+                          {% show_tags %}
                         </div>
                     </div>
                     <!--End Sidebar-->

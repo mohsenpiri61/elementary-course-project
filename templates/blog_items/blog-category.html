@@ -1,4 +1,4 @@
-<ul class="sidebar__category-list list-unstyled">
+<ul class="sidebar__category-list list-unstyled" data-wow-delay="0.1s">
     {% for key,value in cat_dict.items %}
 
     <li class="active"><a href="{% url 'blog_show:category_blog' cat_name=key %}">{{key}} <span>{{value}}</span><i class="icon-right-arrow-1"></i></a></li>

@@ -1,0 +1,14 @@
+
+<div class="sidebar__single sidebar__tags wow animated fadeInUp" data-wow-delay="0.4s">
+      <div class="title">
+          <h2>Tags</h2>
+          <div class="line"></div>
+      </div>
+      <div class="sidebar__tags-list">
+          {% for obj in post_obj %}
+              {% for tag in obj.tags.all %}
+              <a href="{% url 'blog_show:tag_blog' tag_name=tag.name %}">{{tag.name}}</a>
+              {% endfor %}
+          {% endfor %}
+      </div>
+</div>

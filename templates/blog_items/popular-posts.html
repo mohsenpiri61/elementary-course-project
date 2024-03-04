@@ -2,7 +2,7 @@
 
 <div class="line"></div>
 
-<ul class="sidebar__post-list list-unstyled">
+<ul class="sidebar__post-list list-unstyled" data-wow-delay="0.1s">
     {% for obj in post_obj %}
     <li>
             <div class="sidebar__post-image">
@@ -13,6 +13,7 @@
 
                 <span class="sidebar__post-content-meta">
                     {{obj.published_date|date:"d-M-Y"}} </span>
+
                 <span class="sidebar__post-content-meta">
                     ({{obj.published_date|naturaltime}}) </span>
 

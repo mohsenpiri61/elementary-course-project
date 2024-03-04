@@ -47,3 +47,8 @@ def cat_of_posts():
 def latest_posts():
     post_obj = Post.objects.filter(published_date__lt=timezone.now(), status=1).order_by('-published_date')[:6]
     return {'post_obj': post_obj}
+
+@register.inclusion_tag('blog_items/blog-tags.html')
+def show_tags():
+    post_obj = Post.objects.filter(published_date__lt=timezone.now(), status=1)
+    return {'post_obj': post_obj}
