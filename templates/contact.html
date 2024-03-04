@@ -77,7 +77,7 @@
             <div class="container">
                 <div class="page-header__inner">
                     <ul class="thm-breadcrumb list-unstyled">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{% url 'index' %}">Home</a></li>
                         <li><span>//</span></li>
                         <li class="color-base">Contact</li>
                     </ul>
@@ -150,35 +150,36 @@
                 </div>
 
                 <div class="contact-page__bottom">
-                    <form action="{% static 'inc/sendemail.php" class="contact-page__form contact-form-validated">
+                    <form action="{% url 'contact' %}" class="contact-page__form contact-form-validated" method="post">
+                        {% csrf_token %}
                         <div class="row">
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                 <div class="contact-page__input-box">
-                                    <input type="text" placeholder="Mahfuz Riad" name="name">
+                                    <input type="text" placeholder="Name" name="name" required="" >
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                 <div class="contact-page__input-box">
-                                    <input type="email" placeholder="Email address" name="email">
+                                    <input type="email" placeholder="Email address" name="email"  >
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                 <div class="contact-page__input-box">
-                                    <input type="text" placeholder="Phone" name="phone">
+                                    <input type="text" placeholder="Phone" name="phone" >
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                 <div class="contact-page__input-box">
-                                    <input type="email" placeholder="Subject" name="Subject">
+                                    <input type="text" placeholder="Subject" name="subject" required="False">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                 <div class="contact-page__input-box">
-                                    <textarea name="message" placeholder="Your Message here "></textarea>
+                                    <textarea name="message" placeholder="Your Message here" ></textarea>
                                 </div>
                                 <div class="contact-page__btn">
                                     <button type="submit">
@@ -205,7 +206,7 @@
             <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
 
             <div class="logo-box">
-                <a href="index.html" aria-label="logo image"><img src="{% static 'images/resources/footer-logo.png' %}" width="143" alt=""></a>
+                <a href="{% url 'index' %}" aria-label="logo image"><img src="{% static 'images/resources/footer-logo.png' %}" width="143" alt=""></a>
             </div>
             <!-- /.logo-box -->
             <div class="mobile-nav__container"></div>

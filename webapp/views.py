@@ -1,8 +1,7 @@
-#from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 #from webapp.models import Contact
-#from webapp.forms import NameForm, ContactForm, NewsletterForm
-#from django.contrib import messages
+from webapp.forms import ContactForm  #,NewsletterForm
+from django.contrib import messages
 
 
 def index_view(request):
@@ -14,4 +13,13 @@ def about_view(request):
 
 
 def contact_view(request):
+    if request.method == 'POST':
+        form_data = ContactForm(request.POST)
+        if form_data.is_valid():
+            contact = form_data.save()
+            contact.save()
+            messages.add_message(request, messages.SUCCESS, 'save information successfully')
+        else:
+            messages.add_message(request, messages.ERROR, 'save information not successfully')
+    form_data = ContactForm()
     return render(request, 'contact.html')

@@ -39,7 +39,30 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'webapp',
     'blog',
+    'django_summernote',
+
 ]
+
+SUMMERNOTE_THEME = 'bs4'
+X_FRAME_OPTIONS = "SAMEORIGIN"
+SUMMERNOTE_CONFIG = {
+    'iframe': True,
+    'summernote': {
+        'airMode': False,
+        # Use proper language setting automatically (default)
+        'lang': None,
+        'toolbar': [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']],
+        ],
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

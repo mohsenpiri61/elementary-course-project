@@ -1,6 +1,7 @@
 ﻿{% extends 'base.html' %}
-{% block content %}
 {% load static %}
+{% load blog_tags %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,7 +78,7 @@
             <div class="container">
                 <div class="page-header__inner">
                     <ul class="thm-breadcrumb list-unstyled">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{% url 'index' %}">Home</a></li>
                         <li><span>//</span></li>
                         <li class="color-base">Blog List</li>
                     </ul>
@@ -95,224 +96,95 @@
                     <div class="col-xl-8 col-lg-7">
                         <div class="blog-list__left">
                             <div class="blog-list__inner">
+
                                 <!--Start Blog One Single-->
+                                {% for item in filter_post %}
                                 <div class="blog-one__single">
                                     <div class="blog-one__single-img">
                                         <div class="blog-one__single-img-inner">
                                             <img src="{% static 'images/blog/blog-list-img1.jpg' %}" alt="">
                                         </div>
                                         <div class="blog-one__single-img-text">
-                                            <span>Counselor</span>
+                                            {% for cat in item.category_list.all %}
+                                            <span><a href="{% url 'blog_show:category_blog' cat_name=cat.name %}">{{cat.name}}</a> {% if not forloop.last %} , {% endif %}</span>
+                                            {% endfor %}
                                         </div>
                                     </div>
 
                                     <div class="blog-one__single-content">
-                                        <h2><a href="blog-single.html">How Long Does It Take to Become a <br>
-                                                Counselor?</a></h2>
-                                        <p>How can sleep affect your mental health? Lorem ipsum dolor sit amet,
-                                            consectetur notted
-                                            adipisicing elit sed do eiusmod tempor incididunt sociis natoque penatibus
-                                            et magnis </p>
+                                        <h2><a href="blog-single.html">{{item.title}}</a></h2>
+                                        <p>{{item.content}} </p>
                                         <div class="blog-one__single-content-meta-box">
                                             <ul class="list-unstyled">
+
                                                 <li>
                                                     <div class="inner">
                                                         <div class="icon">
                                                             <span class="icon-user"></span>
                                                         </div>
                                                         <div class="text">
-                                                            <a href="#">By Admin</a>
+                                                            <a href="{% url 'blog_show:author_pubs' author_username=item.author.username %}">{{item.author}}</a>
                                                         </div>
 
-                                                    </div>
-                                                </li>
-
-                                                <li>
-                                                    <div class="inner">
-                                                        <div class="icon">
-                                                            <span class=" icon-clock-1"></span>
-                                                        </div>
-                                                        <div class="text">
-                                                            <a href="#">25 August,2022</a>
-                                                        </div>
-
-                                                    </div>
-                                                </li>
-
-                                                <li>
-                                                    <div class="btn-box">
-                                                        <a href="blog-single.html">Read More <span class="icon-right-arrow-2"></span></a>
                                                     </div>
                                                 </li>
                                             </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--End Blog One Single-->
-
-                                <!--Start Blog One Single-->
-                                <div class="blog-one__single">
-                                    <div class="blog-one__single-img">
-                                        <div class="blog-one__single-img-inner">
-                                            <img src="{% static 'images/blog/blog-list-img2.jpg' %}" alt="">
-                                        </div>
-                                        <div class="blog-one__single-img-text">
-                                            <span>Therapy</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="blog-one__single-content">
-                                        <h2><a href="blog-single.html">What To Do with Your Seasonal <br>
-                                                Depression?</a></h2>
-                                        <p>How can sleep affect your mental health? Lorem ipsum dolor sit amet,
-                                            consectetur notted
-                                            adipisicing elit sed do eiusmod tempor incididunt sociis natoque penatibus
-                                            et magnis </p>
-                                        <div class="blog-one__single-content-meta-box">
                                             <ul class="list-unstyled">
                                                 <li>
                                                     <div class="inner">
                                                         <div class="icon">
-                                                            <span class="icon-user"></span>
-                                                        </div>
-                                                        <div class="text">
-                                                            <a href="#">By Admin</a>
-                                                        </div>
-
-                                                    </div>
-                                                </li>
-
-                                                <li>
-                                                    <div class="inner">
-                                                        <div class="icon">
                                                             <span class=" icon-clock-1"></span>
                                                         </div>
                                                         <div class="text">
-                                                            <a href="#">25 August,2022</a>
+                                                            <a>{{item.published_date|date:"d M Y"}}</a>
                                                         </div>
 
                                                     </div>
                                                 </li>
+                                            </ul>
+                                            <ul class="list-unstyled">
+                                                 <li>
+                                                    <div class="inner">
+                                                        <div class="icon">
+                                                            <span class="icon-disappointed-boy"></span>
+                                                        </div>
+                                                        <div class="text">
+                                                            <a> {{item.counted_views}} view</a>
+                                                        </div>
 
-                                                <li>
-                                                    <div class="btn-box">
-                                                        <a href="blog-single.html">Read More <span class="icon-right-arrow-2"></span></a>
                                                     </div>
                                                 </li>
                                             </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--End Blog One Single-->
-
-                                <!--Start Blog One Single-->
-                                <div class="blog-one__single">
-                                    <div class="blog-one__single-img">
-                                        <div class="blog-one__single-img-inner">
-                                            <img src="{% static 'images/blog/blog-list-img3.jpg' %}" alt="">
-                                        </div>
-                                        <div class="blog-one__single-img-text">
-                                            <span>Counseling</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="blog-one__single-content">
-                                        <h2><a href="blog-single.html">Athletes and Mental Health: What Can <br>You
-                                                Learn?</a></h2>
-                                        <p>How can sleep affect your mental health? Lorem ipsum dolor sit amet,
-                                            consectetur notted
-                                            adipisicing elit sed do eiusmod tempor incididunt sociis natoque penatibus
-                                            et magnis </p>
-                                        <div class="blog-one__single-content-meta-box">
                                             <ul class="list-unstyled">
                                                 <li>
                                                     <div class="inner">
                                                         <div class="icon">
-                                                            <span class="icon-user"></span>
+                                                            <span class="icon-quote"></span>
                                                         </div>
                                                         <div class="text">
-                                                            <a href="#">By Admin</a>
+                                                            <a>{% comments_count item.id %} comments</a>
                                                         </div>
 
                                                     </div>
                                                 </li>
+                                            </ul>
 
-                                                <li>
-                                                    <div class="inner">
-                                                        <div class="icon">
-                                                            <span class=" icon-clock-1"></span>
-                                                        </div>
-                                                        <div class="text">
-                                                            <a href="#">25 August,2022</a>
-                                                        </div>
-
-                                                    </div>
-                                                </li>
-
-                                                <li>
+                                        </div>
+                                                <ul class="list-unstyled">
+                                                     <li>
                                                     <div class="btn-box">
                                                         <a href="blog-single.html">Read More <span class="icon-right-arrow-2"></span></a>
                                                     </div>
                                                 </li>
-                                            </ul>
-                                        </div>
+                                                </ul>
+
                                     </div>
+
                                 </div>
+                                {% endfor %}
                                 <!--End Blog One Single-->
 
-                                <!--Start Blog One Single-->
-                                <div class="blog-one__single">
-                                    <div class="blog-one__single-img">
-                                        <div class="blog-one__single-img-inner">
-                                            <img src="{% static 'images/blog/blog-list-img4.jpg' %}" alt="">
-                                        </div>
-                                        <div class="blog-one__single-img-text">
-                                            <span>Depression </span>
-                                        </div>
-                                    </div>
 
-                                    <div class="blog-one__single-content">
-                                        <h2><a href="blog-single.html">Pros and Cons of Online Counselling</a></h2>
-                                        <p>How can sleep affect your mental health? Lorem ipsum dolor sit amet,
-                                            consectetur notted
-                                            adipisicing elit sed do eiusmod tempor incididunt sociis natoque penatibus
-                                            et magnis </p>
-                                        <div class="blog-one__single-content-meta-box">
-                                            <ul class="list-unstyled">
-                                                <li>
-                                                    <div class="inner">
-                                                        <div class="icon">
-                                                            <span class="icon-user"></span>
-                                                        </div>
-                                                        <div class="text">
-                                                            <a href="#">By Admin</a>
-                                                        </div>
-
-                                                    </div>
-                                                </li>
-
-                                                <li>
-                                                    <div class="inner">
-                                                        <div class="icon">
-                                                            <span class=" icon-clock-1"></span>
-                                                        </div>
-                                                        <div class="text">
-                                                            <a href="#">25 August,2022</a>
-                                                        </div>
-
-                                                    </div>
-                                                </li>
-
-                                                <li>
-                                                    <div class="btn-box">
-                                                        <a href="blog-single.html">Read More <span class="icon-right-arrow-2"></span></a>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--End Blog One Single-->
 
                                 <ul class="styled-pagination list-unstyled clearfix">
                                     <li><a href="#" class="active">1</a></li>
