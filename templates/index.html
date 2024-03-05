@@ -1,6 +1,7 @@
 ﻿{% extends 'base.html' %}
 {% block content %}
 {% load static %}
+{% load blog_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -437,6 +438,7 @@
             </div>
         </section>
         <!--End Testimonial One-->
+                                {% latest_posts %}
 
     </div><!-- /.page-wrapper -->
 

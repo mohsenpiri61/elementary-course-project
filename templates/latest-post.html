@@ -1,27 +1,32 @@
 
 <!--Start Blog One-->
 <section class="blog-one">
+
     <div class="container">
         <div class="section-title text-center">
             <span class="section-title__tagline">Blog Update</span>
             <div class="section-title__line center"></div>
             <h2 class="section-title__title">Check Latest Blog Post <br> from Blog List</h2>
         </div>
+
         <div class="row">
             <!--Start Blog One Single-->
+            {% for obj in post_obj %}
             <div class="col-xl-4 col-lg-4 wow fadeInLeft" data-wow-delay="0ms">
                 <div class="blog-one__single">
                     <div class="blog-one__single-img">
                         <div class="blog-one__single-img-inner">
-                            <img src="{% static 'images/blog/blog-v1-img1.jpg' %}" alt="">
+                            <img src="{{obj.image.url}}" alt="">
                         </div>
                         <div class="blog-one__single-img-text">
-                            <span>Counselor</span>
+                          {% for cat in obj.category_list.all %}
+                            <span><a href="{% url 'blog_show:category_blog' cat_name=cat.name %}">{{cat.name}}</a> {% if not forloop.last %} , {% endif %}</span>
+                          {% endfor %}
                         </div>
                     </div>
 
                     <div class="blog-one__single-content">
-                        <h2><a href="blog-single.html">How Long Does It Take to <br> Become a Counselor?</a>
+                        <h2><a href="{% url 'blog_show:blog_single' pid=obj.id %}">{{obj.title}}</a>
                         </h2>
                         <div class="blog-one__single-content-meta-box">
                             <ul class="list-unstyled">
@@ -31,7 +36,7 @@
                                             <span class="icon-user"></span>
                                         </div>
                                         <div class="text">
-                                            <a href="#">By Admin</a>
+                                            <a href="{% url 'blog_show:author_pubs' author_username=obj.author.username %}">{{obj.author}}</a>
                                         </div>
 
                                     </div>
@@ -43,7 +48,7 @@
                                             <span class=" icon-clock-1"></span>
                                         </div>
                                         <div class="text">
-                                            <a href="#">25 August,2022</a>
+                                            <a>{{obj.published_date|date:"d M Y"}}</a>
                                         </div>
 
                                     </div>
@@ -51,17 +56,19 @@
 
                                 <li>
                                     <div class="btn-box">
-                                        <a href="blog-single.html"><span class="icon-right-arrow-2"></span></a>
+                                        <a href="{% url 'blog_show:blog_single' pid=obj.id %}"><span class="icon-right-arrow-2"></span></a>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
+
             </div>
             <!--End Blog One Single-->
-
+            {% endfor %}
         </div>
+
     </div>
 </section>
 <!--End Blog One-->
