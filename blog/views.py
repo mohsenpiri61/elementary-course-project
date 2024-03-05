@@ -40,7 +40,6 @@ def single_view(request, pid):
         else:
             messages.add_message(request, messages.ERROR, "Your comment didn't submitted .")
 
-    comment_form = CommentForm()
     all_posts = Post.objects.filter(published_date__lt=timezone.now(), status=1)
     post_obj = get_object_or_404(all_posts, id=pid)
     post_obj.counted_views = post_obj.counted_views + 1
@@ -67,7 +66,7 @@ def single_view(request, pid):
             prev_id = post_ids[pid_index - 1]
             prev_post = Post.objects.get(id=prev_id)
 
-        context = {'post_obj': post_obj, 'next_post': next_post, 'prev_post': prev_post, 'comments': comments, 'comment_form': comment_form}
+        context = {'post_obj': post_obj, 'next_post': next_post, 'prev_post': prev_post, 'comments': comments}
         return render(request, 'blog_items/blog-single.html', context)
 
     else:
