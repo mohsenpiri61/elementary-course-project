@@ -1,3 +1,4 @@
+
 {% load humanize %}
 
 <div class="line"></div>
@@ -8,21 +9,17 @@
             <div class="sidebar__post-image">
                 <img src="{{obj.image.url}}" alt="">
             </div>
-
             <div class="sidebar__post-content">
-
-                <span class="sidebar__post-content-meta">
-                    {{obj.published_date|date:"d-M-Y"}} </span>
-
-                <span class="sidebar__post-content-meta">
-                    ({{obj.published_date|naturaltime}}) </span>
-
                 <h5>
                     <a href="{% url 'blog_show:blog_single' pid=obj.id %}">{{obj.title}}</a>
                 </h5>
-
+            </div>
+            <div class="details">
+                <span class="sidebar__post-content-meta">
+                    {{obj.published_date|date:"d-M-Y"}} </span>
+                <span class="sidebar__post-content-meta">
+                    ({{obj.published_date|naturaltime}}) </span>
             </div>
      </li>
     {% endfor %}
 </ul>
-

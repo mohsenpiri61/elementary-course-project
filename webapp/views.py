@@ -21,5 +21,5 @@ def contact_view(request):
             messages.add_message(request, messages.SUCCESS, 'save information successfully')
         else:
             messages.add_message(request, messages.ERROR, 'save information not successfully')
-    form_data = ContactForm()
+
     return render(request, 'contact.html')
