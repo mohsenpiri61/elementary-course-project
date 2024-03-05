@@ -297,16 +297,21 @@
 
                                 <div class="comment-form">
                                     <h3 class="comment-form__title">Leave a Comment</h3>
-                                    <form action="{% static '/inc/sendemail.php" class="comment-one__form contact-form-validated" novalidate="novalidate">
+
+                                    <form action="{% url 'blog_show:blog_single' pid=post_obj.id %}" class="comment-one__form contact-form-validated" method="post">
+
+                                        {% csrf_token %}
+
+                                        <input type="hidden" name="intended_post" value={{post_obj.id}}>
                                         <div class="row">
                                             <div class="col-xl-6">
                                                 <div class="comment-form__input-box">
-                                                    <input type="text" placeholder="Full name" name="name">
+                                                    <input type="text" placeholder="Full name" name="name" value={{request.user.first_name}}>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6">
                                                 <div class="comment-form__input-box">
-                                                    <input type="email" placeholder="Email Address" name="email">
+                                                    <input type="email" placeholder="Email Address" name="email" value={{request.user.email}}>
                                                 </div>
                                             </div>
                                         </div>
