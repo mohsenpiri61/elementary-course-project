@@ -13,7 +13,7 @@ class PostAdmin(SummernoteModelAdmin):
     summernote_fields = ('content',)
     # ordering = ['-created_date']
 
-"""
+
 class CommentAdmin(admin.ModelAdmin):
     date_hierarchy = 'created_date'
     empty_value_display = '-empty-'
@@ -21,8 +21,7 @@ class CommentAdmin(admin.ModelAdmin):
     list_filter = ('approved', 'intended_post')
     search_fields = ('name',)
 
-"""
-#admin.site.register(Comment, CommentAdmin)
+
+admin.site.register(Comment, CommentAdmin)
 admin.site.register(Category)
 admin.site.register(Post, PostAdmin)
-

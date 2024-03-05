@@ -1,6 +1,6 @@
-<div class="sidebar__single sidebar__search wow animated fadeInUp" data-wow-delay="0.1s">
-    <form action="#" class="sidebar__search-form">
-        <input type="search" placeholder="Search">
+<div class="sidebar__single sidebar__search wow animated fadeInUp" >
+    <form action="{% url 'blog_show:search_index' %}" method="get" class="sidebar__search-form">
+        <input name="s" type="search" placeholder="Search">
         <button type="submit"><i class="icon-search"></i></button>
     </form>
 </div>

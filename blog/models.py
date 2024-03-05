@@ -34,14 +34,13 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('blog_show:single_blog', kwargs={'pid': self.id})
+        return reverse('blog_show:blog-single', kwargs={'pid': self.id})
 
 
 class Comment(models.Model):
     intended_post = models.ForeignKey(Post, on_delete=models.CASCADE)
     name = models.CharField(max_length=55)
     email = models.EmailField()
-    subject = models.CharField(max_length=255)
     message = models.TextField()
     approved = models.BooleanField(default=False)
     created_date = models.DateTimeField(auto_now_add=True)

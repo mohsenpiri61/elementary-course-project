@@ -277,33 +277,22 @@
 
                             <div class="blog-single__bottom">
                                 <div class="comment-one">
-                                    <h3 class="comment-one__title">Comments(02)</h3>
+                                    {% for comment in comments %}
+                                    <h3 class="comment-one__title">Comments({{comments|length}})</h3>
                                     <div class="comment-one__single">
                                         <div class="comment-one__image">
                                             <img src="{% static '/images/blog/comment-1-1.png' %}" alt="">
                                         </div>
                                         <div class="comment-one__content">
-                                            <h3>Alex David</h3>
-                                            <span>25 jun, 2022</span>
-                                            <p>Lorem Ipsum available, but the majority have suffered alteration in
-                                                some form If you are going to use a passage of Lorem Ipsum, you need
-                                            </p>
-                                            <a href="blog-details.html" class="comment-one__btn">Reply</a>
+                                            <h3>{{comment.name}}</h3>
+                                            <span>{{comment.created_date|naturalday}}</span>
+                                            <p>{{comment.message}}</p>
+                                            <a href="#" class="comment-one__btn">Reply</a>
                                         </div>
                                     </div>
-                                    <div class="comment-one__single comment-one__single--two">
-                                        <div class="comment-one__image">
-                                            <img src="{% static '/images/blog/comment-1-2.png' %}" alt="">
-                                        </div>
-                                        <div class="comment-one__content">
-                                            <h3>Robin Wiliam</h3>
-                                            <span>27 july 2022</span>
-                                            <p>Lorem Ipsum available, but the majority have suffered alteration in
-                                                some form If you are going to use a passage of Lorem Ipsum, you need
-                                            </p>
-                                            <a href="blog-details.html" class="comment-one__btn">Reply</a>
-                                        </div>
-                                    </div>
+                                    {% empty %}
+                                    <p>No comment has been register up to now</p>
+                                {% endfor %}
                                 </div>
 
                                 <div class="comment-form">

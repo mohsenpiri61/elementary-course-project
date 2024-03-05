@@ -81,4 +81,4 @@ def search_view(request):
         if req:
             filter_post = filter_post.filter(content__contains=req)
     context = {'filter_post': filter_post}
-    return render(request, 'blog_items/blog-home.html', context)
+    return render(request, 'blog_items/blog-list.html', context)
