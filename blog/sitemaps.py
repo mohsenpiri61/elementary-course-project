@@ -1,11 +1,11 @@
 from django.contrib.sitemaps import Sitemap
-#from blog.models import Post
+from blog.models import Post
 from django.utils import timezone
 from django.urls import reverse
 
 
 class BlogSitemap(Sitemap):
-    changefreq = "weekly"
+    changefreq = "monthly"
     priority = 0.5
 
     def items(self):
@@ -13,6 +13,7 @@ class BlogSitemap(Sitemap):
 
     def lastmod(self, obj):
         return obj.published_date
-
+"""
     def location(self, item):
         return reverse('blog_show:single_blog', kwargs={'pid': item.id})
+"""
