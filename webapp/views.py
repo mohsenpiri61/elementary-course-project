@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-#from webapp.models import Contact
 from webapp.forms import ContactForm  #,NewsletterForm
 from django.contrib import messages
 
@@ -21,5 +20,6 @@ def contact_view(request):
             messages.add_message(request, messages.SUCCESS, 'save information successfully')
         else:
             messages.add_message(request, messages.ERROR, 'save information not successfully')
+    form_data = ContactForm()
+    return render(request, 'contact.html', {'form_data': form_data})
 
-    return render(request, 'contact.html')

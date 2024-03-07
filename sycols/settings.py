@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'robots',
     'debug_toolbar',
+    'django_recaptcha',
 
 ]
 
@@ -170,3 +171,12 @@ STATICFILES_DIRS = [BASE_DIR / "assets", ]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 INTERNAL_IPS = ['127.0.0.1']
+
+# captch settings
+RECAPTCHA_PUBLIC_KEY = '6LdVSIwpAAAAAIrw5QZfHKkpIRZa5om0LxRBYTqa'
+RECAPTCHA_PRIVATE_KEY = '6LdVSIwpAAAAADet-5eJ_QKZYnTPmYp1B7uGaOsf dgk'
+RECAPTCHA_PROXY = {
+    'http': 'http://127.0.0.1:8000',
+    'https': 'https://127.0.0.1:8000',
+}
+RECAPTCHA_DOMAIN = 'www.recaptcha.net'
