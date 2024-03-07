@@ -242,9 +242,11 @@
                                 </div>
                                 <p class="footer-widget__newsletter-text">Subscribe us & get news, articles to your
                                     inbox.</p>
-                                <form class="footer-widget__subscribe-box">
+                                <form action="{% url 'newsletter' %}" method="post" class="footer-widget__subscribe-box">
+                                    {% csrf_token %}
                                     <div class="footer-widget__subscribe-input-box">
-                                        <input type="email" placeholder="Email address" name="email">
+                                        <input type="email" placeholder="Email address" name="email" onfocus="this.placeholder = ''"
+                                               required="" onblur="this.placeholder = 'Email Address '">
                                         <button type="submit" class="footer-widget__subscribe-btn"><i class="icon-send"></i></button>
                                     </div>
                                 </form>

@@ -181,14 +181,16 @@
                                 <div class="contact-page__input-box">
                                     <textarea name="message" placeholder="Your Message here" ></textarea>
                                 </div>
+                                {{ form_data.captcha }}
                                 <div class="contact-page__btn">
+
                                     <button type="submit">
                                         <span class="thm-btn">Send A Message</span>
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        {{ form_data.captcha }}
+
                         {% if messages %}
                             <ul class="messages">
                                 {% for message in messages %}
@@ -196,7 +198,6 @@
                                 {% endfor %}
                             </ul>
                         {% endif %}
-
 
                     </form>
 

@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from webapp.forms import ContactForm  #,NewsletterForm
+from django.shortcuts import render, HttpResponseRedirect
+from webapp.forms import ContactForm, NewsletterForm
 from django.contrib import messages
 
 
@@ -23,3 +23,12 @@ def contact_view(request):
     form_data = ContactForm()
     return render(request, 'contact.html', {'form_data': form_data})
 
+
+def newsletter_view(request):
+    if request.method == 'POST':
+        form = NewsletterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+    else:
+        return HttpResponseRedirect('/')
