@@ -21,7 +21,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 from webapp.sitemaps import StaticViewSitemap
 from blog.sitemaps import BlogSitemap
-import debug_toolbar
+#from django.contrib.auth import views as auth_views
+
 
 
 sitemaps = {"static": StaticViewSitemap, 'blog': BlogSitemap, }
@@ -39,6 +40,7 @@ urlpatterns = [
     path("__debug__/", include("debug_toolbar.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
     path('user_section/', include('user_section.urls')),
+
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
