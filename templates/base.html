@@ -19,27 +19,27 @@
                         <div class="main-header__top-right">
                             <ul class="list-unstyled main-header__top-contact">
                                 <li>
-                                    <div class="icon">
-                                        <span class="icon-email-1"></span>
-                                    </div>
+
                                     <div class="content">
-                                        <p>Quick Email Now!</p>
-                                        <h5><a href="mailto:helpus24@gmail.com">helpus24@gmail.com</a></h5>
+                                    {% if request.user.is_authenticated %}
+                                        <li><a href="#">logged in as {{request.user.username}}</a></li>
+                                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                                        <h5><a href="{% url 'login' %}">Login</a></h5>
                                     </div>
                                 </li>
                                 <li>
+                                    {% else %}
                                     <div class="icon">
                                         <span class="icon-location"></span>
                                     </div>
                                     <div class="content">
-                                        <p>Company Location</p>
-                                        <h5>Melbourne, Australia</h5>
+
+                                        <h5><a href="{% url 'user_auth:signup_page' %}">Sign Up</a></h5>
                                     </div>
                                 </li>
                             </ul>
-                            <div class="main-header__top-right-btn">
-                                <a href="{% url 'contact' %}" class="thm-btn">Request Book</a>
-                            </div>
+                            {% endif %}
+                            
                         </div>
                     </div>
                 </div>

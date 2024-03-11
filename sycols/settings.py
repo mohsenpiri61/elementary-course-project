@@ -181,3 +181,5 @@ RECAPTCHA_PROXY = {
     'https': 'https://127.0.0.1:8000',
 }
 RECAPTCHA_DOMAIN = 'www.recaptcha.net'
+
+LOGIN_REDIRECT_URL = '/'
