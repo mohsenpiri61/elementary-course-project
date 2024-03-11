@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'robots',
     'debug_toolbar',
     'django_recaptcha',
+    'user_section',
 
 ]
 
