@@ -15,12 +15,12 @@ def contact_view(request):
     if request.method == 'POST':
         form_data = ContactForm(request.POST)
         if form_data.is_valid():
-            contact = form_data.save()
-            contact.save()
+            form_data.save()
             messages.add_message(request, messages.SUCCESS, 'save information successfully')
         else:
             messages.add_message(request, messages.ERROR, 'save information not successfully')
-    form_data = ContactForm()
+    else:
+        form_data = ContactForm()
     return render(request, 'contact.html', {'form_data': form_data})
 
 
