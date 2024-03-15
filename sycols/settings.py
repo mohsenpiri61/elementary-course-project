@@ -45,15 +45,33 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sitemaps',
     'robots',
-    'debug_toolbar',
     'django_recaptcha',
     'user_section',
+    'compressor',
 
 ]
 
 SITE_ID = 2
 
+# django compressor setting
+COMPRESS_ENABLED = True
+COMPRESS_CACHE_BACKEND = "default"
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter',
+]
+COMPRESS_JS_FILTERS = [
+    'compressor.filters.jsmin.JSMinFilter',
+]
 
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
+
+# summernote setting
 SUMMERNOTE_THEME = 'bs4'
 X_FRAME_OPTIONS = "SAMEORIGIN"
 SUMMERNOTE_CONFIG = {
@@ -83,7 +101,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+
 ]
 
 ROOT_URLCONF = 'sycols.urls'
@@ -171,7 +189,6 @@ STATICFILES_DIRS = [BASE_DIR / "assets", ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-INTERNAL_IPS = ['127.0.0.1']
 
 # captch settings
 RECAPTCHA_PUBLIC_KEY = '6LdVSIwpAAAAAIrw5QZfHKkpIRZa5om0LxRBYTqa'

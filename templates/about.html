@@ -1,6 +1,7 @@
 ﻿{% extends 'base.html' %}
 {% block content %}
 {% load static %}
+{% load compress %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +19,7 @@
     <!-- fonts -->
     <link href="css2?family=Kumbh+Sans:wght@200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-
+    {% compress css %}
     <link rel="stylesheet" href="{% static 'vendors/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'vendors/animate/animate.min.css' %}">
     <link rel="stylesheet" href="{% static 'vendors/animate/custom-animate.css' %}">
@@ -44,6 +45,7 @@
     <!-- template styles -->
     <link rel="stylesheet" href="{% static 'css/sycols.css' %}">
     <link rel="stylesheet" href="{% static 'css/sycols-responsive.css' %}">
+    {% endcompress %}
 </head>
 
 <body class="custom-cursor">
@@ -641,7 +643,7 @@
 
     <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
 
-
+    {% compress js %}
     <script src="{% static 'vendors/jquery/jquery-3.6.0.min.js' %}"></script>
     <script src="{% static 'vendors/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'vendors/jarallax/jarallax.min.js' %}"></script>
@@ -673,6 +675,7 @@
 
     <!-- template js -->
     <script src="{% static 'js/script.js' %}"></script>
+    {% endcompress %}
 </body>
 
 </html>

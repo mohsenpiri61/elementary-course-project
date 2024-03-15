@@ -21,7 +21,6 @@ from django.conf.urls.static import static
 from django.conf import settings
 from webapp.sitemaps import StaticViewSitemap
 from blog.sitemaps import BlogSitemap
-#from django.contrib.auth import views as auth_views
 
 
 
@@ -37,7 +36,7 @@ urlpatterns = [
     ),
     path('summernote/', include('django_summernote.urls')),
     path('robots.txt', include('robots.urls')),
-    path("__debug__/", include("debug_toolbar.urls")),
+
     path("accounts/", include("django.contrib.auth.urls")),
     path('user_section/', include('user_section.urls')),
 
