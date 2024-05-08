@@ -50,8 +50,6 @@ ROBOTS_USE_HOST = True
 ROBOTS_USE_SITEMAP = True
 
 
-
-
 # django compressor setting
 COMPRESS_ENABLED = True
 COMPRESS_CACHE_BACKEND = "default"

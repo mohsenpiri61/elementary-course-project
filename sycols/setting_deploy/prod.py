@@ -4,7 +4,7 @@ from sycols.settings import *
 SECRET_KEY = 'django-insecure-*pe&p!k&%40sw+f81&ku2rbyr!^tr(mof#t*9f!t0qn6fsl&fe'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['mohsen-piri.com', 'www.mohsen-piri.com']
 
