@@ -22,12 +22,12 @@ from django.conf import settings
 from webapp.sitemaps import StaticViewSitemap
 from blog.sitemaps import BlogSitemap
 
-
-
 sitemaps = {"static": StaticViewSitemap, 'blog': BlogSitemap, }
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path('user_section/', include('user_section.urls')),
     path('', include('webapp.urls')),
     path('blog/', include('blog.urls')),
     path(
@@ -36,9 +36,6 @@ urlpatterns = [
     ),
     path('summernote/', include('django_summernote.urls')),
     path('robots.txt', include('robots.urls')),
-
-    path("accounts/", include("django.contrib.auth.urls")),
-    path('user_section/', include('user_section.urls')),
 
 ]
 

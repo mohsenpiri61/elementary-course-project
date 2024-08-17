@@ -11,15 +11,15 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-SECRET_KEY = 'django-insecure-*pe&p!k&%40sw+f81&ku2rbyr!^tr(mof#t*9f!t0qn6fsl&fe'
+SECRET_KEY = config("SECRET_KEY", default="test")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config("DEBUG", cast=bool, default=True)
 
 ALLOWED_HOSTS = config(
     "ALLOWED_HOSTS",
@@ -27,7 +27,7 @@ ALLOWED_HOSTS = config(
     default="*",
 )
 
-SITE_ID = 2
+SITE_ID = config("SITE_ID", cast=int, default=1)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -44,13 +44,11 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sitemaps',
     'robots',
-    #'captcha',
+    # 'aio_recaptcha',
     'user_section',
     'compressor',
 
 ]
-
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -102,14 +100,12 @@ else:
         }
     }
 
-
 # robots
 ROBOTS_USE_HOST = True
 ROBOTS_USE_SITEMAP = True
 
-
 # django compressor setting
-COMPRESS_ENABLED = True
+COMPRESS_ENABLED = False
 COMPRESS_CACHE_BACKEND = "default"
 COMPRESS_CSS_FILTERS = [
     'compressor.filters.css_default.CssAbsoluteFilter',
@@ -126,13 +122,9 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
-
 # summernote setting
 SUMMERNOTE_THEME = 'bs4'
-if DEBUG:
-    X_FRAME_OPTIONS = "SAMEORIGIN"
-else:
-    X_FRAME_OPTIONS = 'DENY'
+
 SUMMERNOTE_CONFIG = {
     'iframe': True,
     'summernote': {
@@ -169,7 +161,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -181,14 +172,10 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 STATIC_URL = 'static/'
 MEDIA_URL = 'media/'
@@ -198,7 +185,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 STATICFILES_DIRS = [BASE_DIR / "static", ]
 
-
 # captch settings
 RECAPTCHA_PUBLIC_KEY = '6LdVSIwpAAAAAIrw5QZfHKkpIRZa5om0LxRBYTqa'
 RECAPTCHA_PRIVATE_KEY = '6LdVSIwpAAAAADet-5eJ_QKZYnTPmYp1B7uGaOsf dgk'
@@ -207,36 +193,49 @@ RECAPTCHA_PROXY = {
     'https': 'https://127.0.0.1:8000',
 }
 RECAPTCHA_DOMAIN = 'www.recaptcha.net'
+RECAPTCHA_ADMIN_ENABLE=True
+
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'mopiry@gmail.com'
-EMAIL_HOST_PASSWORD = 'saxf aieo zxhb igiu'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
-DEFAULT_FROM_EMAIL = 'mopiry@gmail.com'
-SERVER_EMAIL = 'mopiry@gmail.com'
+# EMAIL_BACKEND = config("EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend")
+# EMAIL_HOST = config("EMAIL_HOST", default="mail.example.come")
+# EMAIL_PORT = int(config("EMAIL_PORT", default=587))
+# EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+# EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+# EMAIL_USE_SSL = config("EMAIL_USE_SSL", cast=bool, default=True)
+# EMAIL_USE_TLS = config("EMAIL_USE_TLS", cast=bool, default=False)
+# DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="info@example.com")
 
-# HSTS setting
-SECURE_HSTS_SECONDS = 15768000
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
-# Https setting
-SESSION_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True
-CSRF_COOKIE_SECURE = True
-# more security setting
-SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_BROWSER_XSS_FILTER = True
 
-SECURE_REFERRER_POLICY = 'strict-origin'
-USE_X_FORWARDED_HOST = True
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+if config("USE_SSL_CONFIG", cast=bool, default=False):
+    # Https settings
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
 
-SESSION_COOKIE_SAMESITE = 'Strict'
-CSRF_COOKIE_HTTPONLY = True
-CSRF_USE_SESSIONS = True
+    # HSTS settings
+    SECURE_HSTS_SECONDS = 31536000  # 1 year
+    SECURE_HSTS_PRELOAD = True
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+    # more security settings
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_REFERRER_POLICY = "strict-origin"
+    USE_X_FORWARDED_HOST = True
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    X_FRAME_OPTIONS = "SAMEORIGIN"
+
+if config("ENABLE_WHITENOISE", cast=bool, default=False):
+    # Insert Whitenoise Middleware.
+    MIDDLEWARE = tuple(
+        ['whitenoise.middleware.WhiteNoiseMiddleware'] + list(MIDDLEWARE))
+
+STORAGES = {
+    # ...
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}

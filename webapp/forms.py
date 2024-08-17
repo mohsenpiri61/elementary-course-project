@@ -6,8 +6,6 @@ from webapp.models import Contact, Newsletter
 
 
 class ContactForm(forms.ModelForm):
-    #captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox())
-
     class Meta:
         model = Contact
         fields = '__all__'
