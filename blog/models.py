@@ -15,7 +15,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to='app_image/', default='default.png')
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=100)
-    content = models.TextField()
+    # content = models.TextField()
     tags = TaggableManager()
     counted_views = models.PositiveIntegerField(default=0)
     status = models.BooleanField(default=False)
@@ -33,6 +33,12 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    def get_next_post(self):
+        return Post.objects.filter(created_date__gt=self.created_date).order_by('created_date').first()
+
+    def get_previous_post(self):
+        return Post.objects.filter(created_date__lt=self.created_date).order_by('-created_date').first()
+   
     def get_absolute_url(self):
         return reverse('blog_show:blog_single', kwargs={'pid': self.id})
 

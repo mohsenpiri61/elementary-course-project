@@ -232,10 +232,3 @@ if config("ENABLE_WHITENOISE", cast=bool, default=False):
     # Insert Whitenoise Middleware.
     MIDDLEWARE = tuple(
         ['whitenoise.middleware.WhiteNoiseMiddleware'] + list(MIDDLEWARE))
-
-STORAGES = {
-    # ...
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}

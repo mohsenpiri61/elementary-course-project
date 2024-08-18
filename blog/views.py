@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def list_view(request, **kwargs):
-    filter_post = Post.objects.filter(published_date__lt=timezone.now(), status=1)
+    filter_post = Post.objects.filter(published_date__lt=timezone.now(), status=1).order_by('created_date')
     if kwargs.get('cat_name') != None:
         filter_post = filter_post.filter(category_list__name=kwargs['cat_name'])
     if kwargs.get('author_username') != None:
@@ -50,22 +50,26 @@ def single_view(request, pid):
         comments = Comment.objects.filter(intended_post=post_obj.id, approved=True)
         # Next and Previous Section
 
-        post_ids = [post.id for post in all_posts]
-        pid_index = post_ids.index(pid)
-        if pid_index == 0:
-            next_id = post_ids[pid_index + 1]
-            next_post = Post.objects.get(id=next_id)
-            prev_post = None
-        elif pid_index == post_ids.index(post_ids[-1]):
-            prev_id = post_ids[pid_index - 1]
-            prev_post = Post.objects.get(id=prev_id)
-            next_post = None
-        else:
-            next_id = post_ids[pid_index + 1]
-            next_post = Post.objects.get(id=next_id)
-            prev_id = post_ids[pid_index - 1]
-            prev_post = Post.objects.get(id=prev_id)
+        # post_ids = [post.id for post in all_posts]
+        # print(post_ids)
+        # pid_index = post_ids.index(pid)
+        # print( pid_index)
+        # if pid_index == 0:
+        #     next_id = post_ids[pid_index + 1]
+        #     next_post = Post.objects.get(id=next_id)
+        #     prev_post = None
+        # elif pid_index == post_ids.index(post_ids[-1]):
+        #     prev_id = post_ids[pid_index - 1]
+        #     prev_post = Post.objects.get(id=prev_id)
+        #     next_post = None
+        # else:
+        #     next_id = post_ids[pid_index + 1]
+        #     next_post = Post.objects.get(id=next_id)
+        #     prev_id = post_ids[pid_index - 1]
+        #     prev_post = Post.objects.get(id=prev_id)
 
+        next_post = post_obj.get_next_post()
+        prev_post = post_obj.get_previous_post()
         context = {'post_obj': post_obj, 'next_post': next_post, 'prev_post': prev_post, 'comments': comments}
         return render(request, 'blog_items/blog-single.html', context)
 
