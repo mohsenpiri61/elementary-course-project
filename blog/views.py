@@ -46,33 +46,11 @@ def single_view(request, pid):
     post_obj.save()
 
     if not post_obj.login_needed or request.user.is_authenticated:
-
         comments = Comment.objects.filter(intended_post=post_obj.id, approved=True)
-        # Next and Previous Section
-
-        # post_ids = [post.id for post in all_posts]
-        # print(post_ids)
-        # pid_index = post_ids.index(pid)
-        # print( pid_index)
-        # if pid_index == 0:
-        #     next_id = post_ids[pid_index + 1]
-        #     next_post = Post.objects.get(id=next_id)
-        #     prev_post = None
-        # elif pid_index == post_ids.index(post_ids[-1]):
-        #     prev_id = post_ids[pid_index - 1]
-        #     prev_post = Post.objects.get(id=prev_id)
-        #     next_post = None
-        # else:
-        #     next_id = post_ids[pid_index + 1]
-        #     next_post = Post.objects.get(id=next_id)
-        #     prev_id = post_ids[pid_index - 1]
-        #     prev_post = Post.objects.get(id=prev_id)
-
         next_post = post_obj.get_next_post()
         prev_post = post_obj.get_previous_post()
         context = {'post_obj': post_obj, 'next_post': next_post, 'prev_post': prev_post, 'comments': comments}
         return render(request, 'blog_items/blog-single.html', context)
-
     else:
         return HttpResponseRedirect(reverse('user_auth:login_page'))
 
