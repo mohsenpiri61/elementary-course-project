@@ -180,10 +180,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_URL = 'static/'
 MEDIA_URL = 'media/'
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'static'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-STATICFILES_DIRS = [BASE_DIR / "static", ]
+STATICFILES_DIRS = [BASE_DIR / "staticfiles",]
 
 # captch settings
 RECAPTCHA_PUBLIC_KEY = '6LdVSIwpAAAAAIrw5QZfHKkpIRZa5om0LxRBYTqa'
